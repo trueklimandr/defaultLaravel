@@ -2,5 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-    {{Form::open()}}
+    {{!! Form::open() !!}}
+
+    {!! Form::close() !!}
 @endsection
