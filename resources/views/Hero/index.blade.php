@@ -1,10 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="position-ref full-height">
-        @foreach($heroes as $hero)
-            <h1>{{$hero->name}}</h1>
-        @endforeach
-        <a style="color: #1d2124" href="{{url('heroes/create')}}">Create a new one</a>
+    <div class="container">
+        <div class="row">
+            <div class="align-content-center">
+                <h1>Heroes list:</h1>
+                @foreach($heroes as $hero)
+                    <li>
+                        {{$hero['name']}}
+                        <a class="btn-sm btn-danger" href="{{url("heroes/{$hero['id']}/delete")}}">X</a>
+                    </li>
+                @endforeach
+                @if (!$heroes)
+                    <li>No heroes at all :(</li>
+                @endif
+            </div>
+        </div>
+        <div class="row">
+            <a class="btn btn-success" href="{{url('heroes/create')}}">Create a new one</a>
+        </div>
     </div>
 @endsection

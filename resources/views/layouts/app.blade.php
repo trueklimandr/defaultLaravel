@@ -11,7 +11,8 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <!--<style>
         html, body {
             background-color: #fff;
             color: #636b6f;
@@ -62,7 +63,7 @@
         .m-b-md {
             margin-bottom: 30px;
         }
-    </style>
+    </style>-->
 </head>
 <body>
     @yield('content')
