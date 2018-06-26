@@ -20,5 +20,6 @@ class Hero extends Model
      */
     protected $fillable = [
         'name',
+        'active',
     ];
 }

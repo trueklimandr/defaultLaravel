@@ -9,6 +9,13 @@
                 {!! Form::label('Name:') !!}
                 {!! Form::text('name', null, ['class' => 'form-control']) !!}
             </div>
+
+            <div class="form-group">
+                {{ Form::label('Status:') }}
+                {{ Form::radio('active',1,true) }} Active
+                {{ Form::radio('active',0) }} Not active
+            </div>
+
             {!! Form::submit('Store', ['class' => 'btn btn-success']) !!}
             <a href="{!! URL::previous() !!}" class="btn btn-dark">Back</a>
         {!! Form::close() !!}
