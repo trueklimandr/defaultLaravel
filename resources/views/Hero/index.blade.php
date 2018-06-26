@@ -8,7 +8,7 @@
                 <hr>
                 @foreach($heroes as $hero)
                     <li>
-                        {{$hero['name']}}
+                        <a href="{{url("heroes/{$hero['id']}")}}">{{$hero['name']}}</a>
                         <a class="btn-sm btn-danger" href="{{url("heroes/{$hero['id']}/delete")}}">X</a>
                     </li>
                 @endforeach

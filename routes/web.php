@@ -15,12 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('heroes', 'HeroController@index');
+//Route::get('heroes', 'HeroController@index');
+//
+//Route::get('heroes/create', 'HeroController@create');
+//
+//Route::post('heroes', 'HeroController@store');
+//
+//Route::get('heroes/{id}/delete', 'HeroController@delete');
+//
+//Route::delete('heroes/{id}', 'HeroController@remove');
 
-Route::get('heroes/create', 'HeroController@create');
-
-Route::post('heroes', 'HeroController@store');
-
-Route::get('heroes/{id}/delete', 'HeroController@delete');
-
-Route::delete('heroes/{id}', 'HeroController@remove');
+Route::resource('heroes', 'HeroController');

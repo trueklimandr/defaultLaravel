@@ -17,7 +17,16 @@
             </div>
 
             {!! Form::submit('Store', ['class' => 'btn btn-success']) !!}
-            <a href="{!! URL::previous() !!}" class="btn btn-dark">Back</a>
+            <a href="{{ Url('heroes') }}" class="btn btn-dark">Back</a>
         {!! Form::close() !!}
+
+        @if ($errors->any())
+            <hr>
+            <ul class="alert alert-danger">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
     </div>
 @endsection

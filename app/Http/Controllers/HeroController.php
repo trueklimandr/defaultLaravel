@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Hero;
-use Illuminate\Http\Request;
+use App\Http\Requests\CreateHeroRequest;
 
 class HeroController extends Controller
 {
@@ -27,11 +27,11 @@ class HeroController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param CreateHeroRequest $request
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function store(Request $request)
+    public function store(CreateHeroRequest $request)
     {
         Hero::create($request->toArray());
 
@@ -48,10 +48,20 @@ class HeroController extends Controller
         return view('Hero.delete', ['hero' => Hero::findOrFail($id)]);
     }
 
+    /**
+     * @param int $id
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function remove(int $id)
     {
         Hero::where('id', $id)->delete();
 
         return redirect('heroes');
+    }
+
+    public function show(int $id)
+    {
+        return view('Hero.show', ['hero' => Hero::findOrFail($id)]);
     }
 }
