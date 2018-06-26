@@ -12,7 +12,7 @@ class HeroController extends Controller
      */
     public function index()
     {
-        return $this->getMainData();
+        return view('Hero.index', ['heroes' => Hero::all()->sortBy('name')->toArray()]);
     }
 
     /**
@@ -32,7 +32,7 @@ class HeroController extends Controller
     {
         Hero::create($request->toArray());
 
-        return $this->getMainData();
+        return redirect('heroes');
     }
 
     /**
@@ -42,16 +42,13 @@ class HeroController extends Controller
      */
     public function delete(int $id)
     {
-        Hero::where('id', $id)->delete();
-
-        return $this->getMainData();
+        return view('Hero.delete', ['hero' => Hero::find($id)]);
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    private function getMainData()
+    public function remove(int $id)
     {
-        return view('Hero.index', ['heroes' => Hero::all()->sortBy('name')->toArray()]);
+        Hero::where('id', $id)->delete();
+
+        return redirect('heroes');
     }
 }
