@@ -12,7 +12,7 @@ class HeroController extends Controller
      */
     public function index()
     {
-        return view('Hero.index', ['heroes' => Hero::where('active', '=', 1)
+        return view('Hero.index', ['heroes' => Hero::isActive()
             ->orderBy('name')
             ->get()
             ->toArray()]);

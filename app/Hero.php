@@ -22,4 +22,24 @@ class Hero extends Model
         'name',
         'active',
     ];
+
+    /**
+     * @param $value
+     */
+    public function setActiveAttribute($value)
+    {
+        if ($value == 0) {
+            $this->attributes['active'] = 0;
+        } else {
+            $this->attributes['active'] = 1;
+        }
+    }
+
+    /**
+     * @param $query
+     */
+    public function scopeIsActive($query)
+    {
+        $query->where('active', '=', 1);
+    }
 }
