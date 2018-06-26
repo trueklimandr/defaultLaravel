@@ -42,7 +42,7 @@ class HeroController extends Controller
      */
     public function delete(int $id)
     {
-        return view('Hero.delete', ['hero' => Hero::find($id)]);
+        return view('Hero.delete', ['hero' => Hero::findOrFail($id)]);
     }
 
     public function remove(int $id)

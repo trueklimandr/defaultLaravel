@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        {!! Form::open(['url' => "heroes/{$hero['id']}"]) !!}
+        {!! Form::open(['method' => 'DELETE', 'url' => "heroes/{$hero['id']}"]) !!}
         <div class="form-group">
             {!! Form::label('Name:') !!}
             {!! Form::text('name', $hero['name'], ['class' => 'form-control']) !!}
