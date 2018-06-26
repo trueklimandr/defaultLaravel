@@ -18,3 +18,9 @@ Route::get('/', function () {
 Route::get('heroes', 'HeroController@index');
 
 Route::get('heroes/create', 'HeroController@create');
+
+Route::post('heroes', 'HeroController@store');
+
+Route::get('heroes/{id}/delete', 'HeroController@delete');
+
+Route::delete('heroes/{id}', 'HeroController@remove');
