@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Hero;
-use App\Http\Requests\CreateHeroRequest;
+use App\Http\Requests\HeroRequest;
 
 class HeroController extends Controller
 {
@@ -27,11 +27,11 @@ class HeroController extends Controller
     }
 
     /**
-     * @param CreateHeroRequest $request
+     * @param HeroRequest $request
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function store(CreateHeroRequest $request)
+    public function store(HeroRequest $request)
     {
         Hero::create($request->toArray());
 
@@ -53,15 +53,43 @@ class HeroController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function remove(int $id)
+    public function destroy(int $id)
     {
-        Hero::where('id', $id)->delete();
+        Hero::findOrFail($id)->delete();
 
         return redirect('heroes');
     }
 
+    /**
+     * @param int $id
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show(int $id)
     {
         return view('Hero.show', ['hero' => Hero::findOrFail($id)]);
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit(int $id)
+    {
+        return view('Hero.edit', ['hero' => Hero::findOrFail($id)]);
+    }
+
+    /**
+     * @param int $id
+     * @param HeroRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function update(int $id, HeroRequest $request)
+    {
+        Hero::findOrFail($id)->update($request->all());
+
+        return redirect('heroes');
     }
 }

@@ -26,3 +26,5 @@ Route::get('/', function () {
 //Route::delete('heroes/{id}', 'HeroController@remove');
 
 Route::resource('heroes', 'HeroController');
+
+Route::get('heroes/{id}/delete', 'HeroController@delete');
