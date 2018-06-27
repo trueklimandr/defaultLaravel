@@ -4,6 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Hero
+ *
+ * @package App
+ *
+ * @property string $name
+ * @property boolean $active
+ */
 class Hero extends Model
 {
     /**
