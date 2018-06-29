@@ -26,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * User can create many heroes
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function heroes()
+    {
+        return $this->hasMany(Hero::class);
+    }
 }

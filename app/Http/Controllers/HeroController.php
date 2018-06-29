@@ -23,7 +23,7 @@ class HeroController extends Controller
      */
     public function create()
     {
-        return view('Hero.create');
+        return view('Hero.create', ['action' => 'Create', 'heroActive' => true]);
     }
 
     /**
@@ -77,7 +77,13 @@ class HeroController extends Controller
      */
     public function edit(int $id)
     {
-        return view('Hero.edit', ['hero' => Hero::findOrFail($id)]);
+        $hero = Hero::findOrFail($id);
+
+        return view('Hero.edit', [
+            'hero' => $hero,
+            'action' => 'Update',
+            'heroActive' => $hero->active,
+        ]);
     }
 
     /**
