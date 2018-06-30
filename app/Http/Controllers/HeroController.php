@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Hero;
-use Illuminate\Http\Request;
+use App\Http\Requests\HeroRequest;
 
 class HeroController extends Controller
 {
@@ -23,15 +23,15 @@ class HeroController extends Controller
      */
     public function create()
     {
-        return view('Hero.create');
+        return view('Hero.create', ['action' => 'Create', 'heroActive' => true]);
     }
 
     /**
-     * @param Request $request
+     * @param HeroRequest $request
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function store(Request $request)
+    public function store(HeroRequest $request)
     {
         Hero::create($request->toArray());
 
@@ -48,9 +48,53 @@ class HeroController extends Controller
         return view('Hero.delete', ['hero' => Hero::findOrFail($id)]);
     }
 
-    public function remove(int $id)
+    /**
+     * @param int $id
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function destroy(int $id)
     {
-        Hero::where('id', $id)->delete();
+        Hero::findOrFail($id)->delete();
+
+        return redirect('heroes');
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show(int $id)
+    {
+        return view('Hero.show', ['hero' => Hero::findOrFail($id)]);
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit(int $id)
+    {
+        $hero = Hero::findOrFail($id);
+
+        return view('Hero.edit', [
+            'hero' => $hero,
+            'action' => 'Update',
+            'heroActive' => $hero->active,
+        ]);
+    }
+
+    /**
+     * @param int $id
+     * @param HeroRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function update(int $id, HeroRequest $request)
+    {
+        Hero::findOrFail($id)->update($request->all());
 
         return redirect('heroes');
     }

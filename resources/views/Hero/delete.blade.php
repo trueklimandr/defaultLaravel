@@ -10,7 +10,7 @@
             {!! Form::text('name', $hero['name'], ['class' => 'form-control', 'disabled']) !!}
         </div>
         {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-        <a href="{!! URL::previous() !!}" class="btn btn-dark">Back</a>
+        <a href="{{ Url('heroes') }}" class="btn btn-dark">Back</a>
         {!! Form::close() !!}
     </div>
 @endsection

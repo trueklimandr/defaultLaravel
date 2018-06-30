@@ -4,6 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Hero
+ *
+ * @package App
+ *
+ * @property string $name
+ * @property boolean $active
+ */
 class Hero extends Model
 {
     /**
@@ -41,5 +49,15 @@ class Hero extends Model
     public function scopeIsActive($query)
     {
         $query->where('active', '=', 1);
+    }
+
+    /**
+     * Hero is created by one user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

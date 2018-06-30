@@ -8,14 +8,16 @@
                 <hr>
                 @foreach($heroes as $hero)
                     <li>
-                        {{$hero['name']}}
-                        <a class="btn-sm btn-danger" href="{{url("heroes/{$hero['id']}/delete")}}">X</a>
+                        <a href="{{url("heroes/{$hero['id']}")}}">{{$hero['name']}}</a>
+                        <a class="btn-sm btn-info" href="{{url("heroes/{$hero['id']}/edit")}}">Edit</a>
+                        <a class="btn-sm btn-danger" href="{{url("heroes/{$hero['id']}/delete")}}">Delete</a>
                     </li>
+                    <hr>
                 @endforeach
                 @if (!$heroes)
                     <li>No heroes at all :(</li>
+                    <hr>
                 @endif
-                <hr>
             </div>
         </div>
         <div class="row">

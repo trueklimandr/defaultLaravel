@@ -5,19 +5,8 @@
         <h2>Creating a hero ...</h2>
         <hr>
         {!! Form::open(['url' => 'heroes']) !!}
-            <div class="form-group">
-                {!! Form::label('Name:') !!}
-                {!! Form::text('name', null, ['class' => 'form-control']) !!}
-            </div>
-
-            <div class="form-group">
-                {{ Form::label('Status:') }}
-                {{ Form::radio('active',1,true) }} Active
-                {{ Form::radio('active',0) }} Not active
-            </div>
-
-            {!! Form::submit('Store', ['class' => 'btn btn-success']) !!}
-            <a href="{!! URL::previous() !!}" class="btn btn-dark">Back</a>
+        @include('partials/hero.form')
         {!! Form::close() !!}
+        @include('partials/errors.list')
     </div>
 @endsection
